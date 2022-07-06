@@ -12,8 +12,9 @@ function App() {
   }, []) 
   return (
     <div className='container'>
-      <div className='board-container'></div>
-      <Board board={board}/>
+      <div className='board-container'>
+        <Board board={board}/>
+      </div>
     </div>
   )
 }
