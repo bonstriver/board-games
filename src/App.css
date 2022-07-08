@@ -1,6 +1,8 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: 'PT Sans', sans-serif;
+
 }
 
 .container {
@@ -14,6 +16,8 @@
 .board-container {
     width: 600px;
     height: 600px;
+    border: 8px solid rgb(85, 52, 52);
+    border-radius: 4px;
 }
 
 .board {
@@ -78,4 +82,31 @@
     background: rgb(63,63,63);
     border: 2px solid white;
     border-radius: 10px;
+}
+
+.a-btn {
+    width: 150px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: black;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 2px solid white;
+  }
+
+  .a-btn:hover {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+  } 
+
+
+.btn-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 16px;
 }

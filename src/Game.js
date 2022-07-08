@@ -1,15 +1,20 @@
 import { Chess } from 'chess.js'
 import { BehaviorSubject } from 'rxjs'
 
+let promotion = 'rnb2bnr/pppPkppp/8/4p3/7q/8/PPPP1PPP/RNBQKBNR w KQ - 1 5'
+let stalemate = '4k3/4P3/4K3/8/8/8/8/8 b - - 0 78'
+let checkmate = 'rnb1kbnr/pppp1ppp/8/4p3/5PPq/8/PPPPP2P/RNBQKBNR w KQ - 1 3'
+let lackMaterial = 'k7/8/n7/8/8/8/8/7K b - - 0 1'
+
 const chess = new Chess()
 
-export const gameSubject = new BehaviorSubject()
+export const gameSubject = new BehaviorSubject(promotion)
 
 export function initGame() {
-    const savedGame = localStorage.getItem('savedGame')
-    if (savedGame) {
-        chess.load(savedGame)
-    }
+    // const savedGame = localStorage.getItem('savedGame')
+    // if (savedGame) {
+    //     chess.load(savedGame)
+    // }
     updateGame()
 }
 

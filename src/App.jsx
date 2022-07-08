@@ -22,6 +22,11 @@ function App() {
 
   return (
     <div className='container'>
+      {!isGameOver && (
+        <div className="btn-wrap">
+          <a className="a-btn" href='http://localhost:3001'>BACK</a>
+        </div>
+      )}
       {isGameOver && (
         <h2 className='vertical-text'>
           GAME OVER
