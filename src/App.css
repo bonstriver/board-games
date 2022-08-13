@@ -110,3 +110,7 @@
     left: 0;
     padding: 16px;
 }
+
+.timer-container {
+    display: flex;
+}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './App.css'
-import { gameSubject, initGame, resetGame} from './Game'
+import { gameSubject, initGame, resetGame, Timer} from './Game'
 import Board from './Board'
 
 function App() { 
@@ -33,10 +33,15 @@ function App() {
         </h2>
       )}
       <div className='board-container'>
-        <Board board={board} turn={turn} />
+        <Board board={board} turn={turn} />0
+      </div>
+      <div className='timer-container'>
+        <Timer />
+        <Timer />
       </div>
       {result && <p className='vertical-text'>{result}</p>}
     </div>
+    
   )
 }
 

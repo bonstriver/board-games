@@ -1,5 +1,6 @@
 import { Chess } from 'chess.js'
 import { BehaviorSubject } from 'rxjs'
+import React, { useState } from 'react'
 
 let promotion = 'rnb2bnr/pppPkppp/8/4p3/7q/8/PPPP1PPP/RNBQKBNR w KQ - 1 5'
 let stalemate = '4k3/4P3/4K3/8/8/8/8/8 b - - 0 78'
@@ -8,7 +9,7 @@ let lackMaterial = 'k7/8/n7/8/8/8/8/7K b - - 0 1'
 
 const chess = new Chess()
 
-export const gameSubject = new BehaviorSubject(promotion)
+export const gameSubject = new BehaviorSubject()
 
 export function initGame() {
     // const savedGame = localStorage.getItem('savedGame')
@@ -80,4 +81,31 @@ function getGameResult(){
     } else {
         return 'UNKNOWN REASON'
     }
+}
+
+export function Timer() {
+    const [seconds, setSeconds] = useState(0)
+
+
+    const startTimer = () => {
+        setInterval(() => {
+            setSeconds(seconds => seconds + 1)
+        }, 1000)
+    }
+
+    const stopTimer = () => {
+        clearInterval(setSeconds(0))
+        document.querySelector('#counter').remove()
+    }
+
+    const currentCount = seconds
+
+    return (
+
+        <div className="counter-container">
+            <button className="start-button" onClick={startTimer}>start</button>
+            <button className="stop-button" onClick={stopTimer}>stop</button>
+            <p id="counter">{currentCount}</p>
+        </div>
+    )
 }
