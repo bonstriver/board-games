@@ -21,7 +21,7 @@ function App() {
     return () => subscribe.unsubscribe()
   }, []) 
 
-  const msTime = 1000 * 10
+  const msTime = 1000 * 90
   const msNow = new Date().getTime()
   const msCountdown = msNow + msTime
 
