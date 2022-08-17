@@ -1,29 +1,42 @@
-// import React from 'react'
-// import { useState } from 'react'
+import { useCountdown } from './useCountdown'
+import TimeDisplay from './TimeDisplay';
 
-// export default function Timer() {
-//     const [seconds, setSeconds] = useState(0)
+const ExpiredNotice = () => {
+    return (
+      <div className="expired-notice">
+        <span>Expired!!!</span>
+        <p>Please select a future date and time.</p>
+      </div>
+    );
+  };
 
+  const ShowCounter = ({ minutes, seconds }) => {
+    return (
+      <div className="show-counter">
+        <a
+          className="countdown-link"
+        >
+          <TimeDisplay value={minutes} type={'Mins'} isDanger={minutes <= 0} />
+          <p>:</p>
+          <TimeDisplay value={seconds} type={'Seconds'} isDanger={minutes <= 0} />
+        </a>
+      </div>
+    );
+  };
 
-//     const startTimer = () => {
-//         setInterval(() => {
-//             setSeconds(seconds => seconds + 1)
-//         }, 1000)
-//     }
+const Timer = ({ targetDate }) => {
+    const [minutes, seconds] = useCountdown(targetDate);
+  
+    if (minutes + seconds <= 0) {
+      return <ExpiredNotice />;
+    } else {
+      return (
+        <ShowCounter
+          minutes={minutes}
+          seconds={seconds}
+        />
+      );
+    }
+  };
 
-//     const stopTimer = () => {
-//         clearInterval(setSeconds(0))
-//         document.querySelector('#counter').remove()
-//     }
-
-//     const currentCount = seconds
-
-//     return (
-
-//         <div className="counter-container">
-//             <button className="start-button" onClick={startTimer}>start</button>
-//             <button className="stop-button" onClick={stopTimer}>stop</button>
-//             <p id="counter">{currentCount}</p>
-//         </div>
-//     )
-// }
+export default Timer;

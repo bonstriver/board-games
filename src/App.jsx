@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './App.css'
-import { gameSubject, initGame, resetGame, Timer} from './Game'
+import { gameSubject, initGame, resetGame} from './Game'
 import Board from './Board'
+import Timer from './Timer'
 
 function App() { 
   const [board, setBoard] = useState([])
@@ -20,6 +21,10 @@ function App() {
     return () => subscribe.unsubscribe()
   }, []) 
 
+  const THREE_DAYS_IN_MS = 1000 * 60 * 5
+  const NOW_IN_MS = new Date().getTime()
+  const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS
+
   return (
     <div className='container'>
       {isGameOver && (
@@ -36,8 +41,8 @@ function App() {
         <Board board={board} turn={turn} />0
       </div>
       <div className='timer-container'>
-        <Timer />
-        <Timer />
+        <Timer targetDate={dateTimeAfterThreeDays}/>
+        <Timer targetDate={dateTimeAfterThreeDays}/>
       </div>
       {result && <p className='vertical-text'>{result}</p>}
     </div>
