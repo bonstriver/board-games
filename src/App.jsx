@@ -38,11 +38,11 @@ function App() {
         </h2>
       )}
       <div className='board-container'>
-        <Board board={board} turn={turn} />0
+        <Board board={board} turn={turn} />
       </div>
       <div className='timer-container'>
-        <Timer targetDate={dateTimeAfterThreeDays}/>
-        <Timer targetDate={dateTimeAfterThreeDays}/>
+        {/* <Timer targetDate={dateTimeAfterThreeDays}/>
+        <Timer targetDate={dateTimeAfterThreeDays}/> */}
       </div>
       {result && <p className='vertical-text'>{result}</p>}
     </div>
