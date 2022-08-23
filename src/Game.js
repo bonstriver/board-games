@@ -1,5 +1,6 @@
 import { Chess } from 'chess.js'
 import { BehaviorSubject } from 'rxjs'
+import { Timer, ExpiredNotice } from './Timer'
 
 let promotion = 'rnb2bnr/pppPkppp/8/4p3/7q/8/PPPP1PPP/RNBQKBNR w KQ - 1 5'
 let stalemate = '4k3/4P3/4K3/8/8/8/8/8 b - - 0 78'
@@ -64,6 +65,11 @@ function updateGame(pendingPromotion) {
 }
 
 function getGameResult(){
+    if (Timer.ExpiredNotice === 'Expired!'){
+        chess.game_over()
+        const winner = chess.turn()==="w" ? 'BLACK' : 'WHITE'
+        return `TIME - WINNER - ${winner}`
+    }
     if (chess.in_checkmate()) {
         const winner = chess.turn()==="w" ? 'BLACK' : 'WHITE'
         return `CHECKMATE - WINNER - ${winner}`

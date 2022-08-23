@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './App.css'
 import { gameSubject, initGame, resetGame} from './Game'
 import Board from './Board'
-import Timer from './Timer'
+import {Timer, ExpiredNotice} from './Timer'
 
 function App() { 
   const [board, setBoard] = useState([])
@@ -21,9 +21,9 @@ function App() {
     return () => subscribe.unsubscribe()
   }, []) 
 
-  const THREE_DAYS_IN_MS = 1000 * 60 * 5
-  const NOW_IN_MS = new Date().getTime()
-  const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS
+  const msTime = 1000 * 90
+  const msNow = new Date().getTime()
+  const msCountdown = msNow + msTime
 
   return (
     <div className='container'>
@@ -41,8 +41,8 @@ function App() {
         <Board board={board} turn={turn} />
       </div>
       <div className='timer-container'>
-        {/* <Timer targetDate={dateTimeAfterThreeDays}/>
-        <Timer targetDate={dateTimeAfterThreeDays}/> */}
+        {/* <Timer targetTime={msCountdown} />
+        <Timer targetTime={msCountdown} /> */}
       </div>
       {result && <p className='vertical-text'>{result}</p>}
     </div>
