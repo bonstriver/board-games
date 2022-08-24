@@ -22,8 +22,8 @@ function App() {
   }, []) 
 
   const msTime = 1000 * 10
-  const msNow = new Date().getTime()
-  const msCountdown = msNow + msTime
+  const now = new Date().getTime()
+  const msCountdown = msNow + now
 
   return (
     <div className='container'>
@@ -42,7 +42,6 @@ function App() {
       </div>
       <div className='timer-container'>
         <Timer targetTime={msCountdown} />
-        {/* <Timer targetTime={msCountdown} /> */}
       </div>
       {result && <p className='vertical-text'>{result}</p>}
     </div>
