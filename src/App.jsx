@@ -21,7 +21,7 @@ function App() {
     return () => subscribe.unsubscribe()
   }, []) 
 
-  const msTime = 1000 * 90
+  const msTime = 1000 * 10
   const msNow = new Date().getTime()
   const msCountdown = msNow + msTime
 
@@ -42,7 +42,7 @@ function App() {
       </div>
       <div className='timer-container'>
         <Timer targetTime={msCountdown} />
-        <Timer targetTime={msCountdown} />
+        {/* <Timer targetTime={msCountdown} /> */}
       </div>
       {result && <p className='vertical-text'>{result}</p>}
     </div>

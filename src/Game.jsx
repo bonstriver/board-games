@@ -1,11 +1,13 @@
 import { Chess } from 'chess.js'
 import { BehaviorSubject } from 'rxjs'
-import { Timer, ExpiredNotice } from './Timer'
+// import { Timer, ExpiredNotice } from './Timer'
+// import { useCaptured } from './useCaptured'
+// import { useState } from 'react'
 
-let promotion = 'rnb2bnr/pppPkppp/8/4p3/7q/8/PPPP1PPP/RNBQKBNR w KQ - 1 5'
-let stalemate = '4k3/4P3/4K3/8/8/8/8/8 b - - 0 78'
-let checkmate = 'rnb1kbnr/pppp1ppp/8/4p3/5PPq/8/PPPPP2P/RNBQKBNR w KQ - 1 3'
-let lackMaterial = 'k7/8/n7/8/8/8/8/7K b - - 0 1'
+// let promotion = 'rnb2bnr/pppPkppp/8/4p3/7q/8/PPPP1PPP/RNBQKBNR w KQ - 1 5'
+// let stalemate = '4k3/4P3/4K3/8/8/8/8/8 b - - 0 78'
+// let checkmate = 'rnb1kbnr/pppp1ppp/8/4p3/5PPq/8/PPPPP2P/RNBQKBNR w KQ - 1 3'
+// let lackMaterial = 'k7/8/n7/8/8/8/8/7K b - - 0 1'
 
 const chess = new Chess()
 
@@ -34,8 +36,9 @@ export function handleMove(from, to) {
     }
     const { pendingPromotion } = gameSubject.getValue()
     if (!pendingPromotion) {
-        move(from, to)
+        return move(from, to)
     }
+
 }
 
 export function move(from, to, promotion) {
@@ -44,9 +47,9 @@ export function move(from, to, promotion) {
         tempMove.promotion = promotion
     }
     const legalMove = chess.move(tempMove)
-    
-    if (legalMove) {
+    if (legalMove) {       
         updateGame()
+        return legalMove;
     }
 }
 
@@ -65,11 +68,11 @@ function updateGame(pendingPromotion) {
 }
 
 function getGameResult(){
-    if (Timer.ExpiredNotice === 'Expired!'){
-        chess.game_over()
-        const winner = chess.turn()==="w" ? 'BLACK' : 'WHITE'
-        return `TIME - WINNER - ${winner}`
-    }
+    // if (Timer.ExpiredNotice === 'Expired!'){
+    //     chess.game_over()
+    //     const winner = chess.turn()==="w" ? 'BLACK' : 'WHITE'
+    //     return `TIME - WINNER - ${winner}`
+    // }
     if (chess.in_checkmate()) {
         const winner = chess.turn()==="w" ? 'BLACK' : 'WHITE'
         return `CHECKMATE - WINNER - ${winner}`
